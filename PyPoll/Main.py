@@ -40,9 +40,7 @@ for x in range(len(csv_data)):
 # print(candidates_list)
 
 # The percentage of votes each candidate won
-
-
-
+# The total number of votes each candidate won
 Charles_Casper_Stockham = 0
 Diana_DeGette=0
 Raymon_Anthony_Doane=0
@@ -55,15 +53,51 @@ for y in range(len(csv_data)):
     if csv_data[y][2] == 'Raymon Anthony Doane':
         Raymon_Anthony_Doane+=1
 
+Charles_Casper_Stockham_count = Charles_Casper_Stockham #total count
 Charles_Casper_Stockham = Charles_Casper_Stockham / len(csv_data) *100
-Charles_Casper_Stockham = round(Charles_Casper_Stockham,3)
+Charles_Casper_Stockham = round(Charles_Casper_Stockham,3) #percentage
+
+Diana_DeGette_count = Diana_DeGette #total count
 Diana_DeGette= Diana_DeGette / len(csv_data) *100
-Diana_DeGette = round(Diana_DeGette,3)
+Diana_DeGette = round(Diana_DeGette,3) #percentage
+
+Raymon_Anthony_Doane_count = Raymon_Anthony_Doane #total count
 Raymon_Anthony_Doane = Raymon_Anthony_Doane / len(csv_data) *100
-Raymon_Anthony_Doane = round(Raymon_Anthony_Doane,3)
+Raymon_Anthony_Doane = round(Raymon_Anthony_Doane,3) #percentage
+
+# print(
+# Charles_Casper_Stockham,
+# Charles_Casper_Stockham_count,
+# Diana_DeGette,
+# Diana_DeGette_count,
+# Raymon_Anthony_Doane,
+# Raymon_Anthony_Doane_count)
 
 
+# The winner of the election based on popular vote
+winner = []
 
-print(Charles_Casper_Stockham,
-Diana_DeGette,
-Raymon_Anthony_Doane)
+if Charles_Casper_Stockham_count > Diana_DeGette_count and Charles_Casper_Stockham_count > Raymon_Anthony_Doane_count:
+    winner = 'Charles Casper Stockham'
+if Diana_DeGette_count  > Charles_Casper_Stockham_count  and Diana_DeGette_count > Raymon_Anthony_Doane_count:
+    winner = 'Diana DeGette'
+if Raymon_Anthony_Doane_count > Charles_Casper_Stockham_count  and  Raymon_Anthony_Doane_count > Diana_DeGette_count :
+    winner = 'Raymon Anthony Doane'
+    
+# print(winner)
+
+output=(
+f'Election Results\n'
+f'-------------------------\n'
+f'Total Votes: {total_votes}\n'
+f'-------------------------\n'
+f'Charles Casper Stockham: {Charles_Casper_Stockham}% ({Charles_Casper_Stockham_count})\n'
+f'Diana DeGette: {Diana_DeGette}% ({Diana_DeGette_count})\n'
+f'Raymon Anthony Doane: {Raymon_Anthony_Doane}% ({Raymon_Anthony_Doane_count})\n'
+f'-------------------------\n'
+f'Winner: {winner}\n'
+)
+
+# Write the results to a text file
+with open(file_to_output, "w") as txt_file:
+    txt_file.write(output)
