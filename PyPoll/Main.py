@@ -7,64 +7,63 @@ import os
 
 # Files to load and output (update with correct file paths)
 file_to_load = os.path.join("Resources", "election_data.csv")  # Input file path
-file_to_output = os.path.join("analysis", "election_analysis.txt")  # Output file path
-
-# Initialize variables to track the election data
-total_votes = 0  # Track the total number of votes cast
-
-# Define lists and dictionaries to track candidate names and vote counts
+file_to_output = os.path.join("Analysis", "election_analysis.txt")  # Output file path
 
 
-# Winning Candidate and Winning Count Tracker
-
-
-# Open the CSV file and process it
 with open(file_to_load) as election_data:
     reader = csv.reader(election_data)
 
     # Skip the header row
     header = next(reader)
 
-    # Loop through each row of the dataset and process it
-    for row in reader:
+    csv_data = [row for row in reader]
 
-        # Print a loading indicator (for large datasets)
-        print(". ", end="")
+# print(csv_data)
 
-        # Increment the total vote count for each row
+# The total number of votes cast
+total_votes = 0
 
+for i in range(len(csv_data)):
+    total_votes += 1
 
-        # Get the candidate's name from the row
-
-
-        # If the candidate is not already in the candidate list, add them
+# print(total_votes)
 
 
-        # Add a vote to the candidate's count
+# A complete list of candidates who received votes
+
+candidates_list = []
+
+for x in range(len(csv_data)):
+    if csv_data[x][2] not in candidates_list:
+        candidates_list.append(csv_data[x][2])
+
+# print(candidates_list)
+
+# The percentage of votes each candidate won
 
 
-# Open a text file to save the output
-with open(file_to_output, "w") as txt_file:
 
-    # Print the total vote count (to terminal)
+Charles_Casper_Stockham = 0
+Diana_DeGette=0
+Raymon_Anthony_Doane=0
 
+for y in range(len(csv_data)):
+    if csv_data[y][2] == 'Charles Casper Stockham':
+        Charles_Casper_Stockham+=1
+    if csv_data[y][2] == 'Diana DeGette':
+        Diana_DeGette+=1
+    if csv_data[y][2] == 'Raymon Anthony Doane':
+        Raymon_Anthony_Doane+=1
 
-    # Write the total vote count to the text file
-
-
-    # Loop through the candidates to determine vote percentages and identify the winner
-
-
-        # Get the vote count and calculate the percentage
-
-
-        # Update the winning candidate if this one has more votes
-
-
-        # Print and save each candidate's vote count and percentage
-
-
-    # Generate and print the winning candidate summary
+Charles_Casper_Stockham = Charles_Casper_Stockham / len(csv_data) *100
+Charles_Casper_Stockham = round(Charles_Casper_Stockham,3)
+Diana_DeGette= Diana_DeGette / len(csv_data) *100
+Diana_DeGette = round(Diana_DeGette,3)
+Raymon_Anthony_Doane = Raymon_Anthony_Doane / len(csv_data) *100
+Raymon_Anthony_Doane = round(Raymon_Anthony_Doane,3)
 
 
-    # Save the winning candidate summary to the text file
+
+print(Charles_Casper_Stockham,
+Diana_DeGette,
+Raymon_Anthony_Doane)
