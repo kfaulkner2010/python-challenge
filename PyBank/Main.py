@@ -6,13 +6,13 @@ import csv
 import os
 
 # Files to load and output (update with correct file paths)
-file_to_load = r"C:\Users\X572490\OneDrive - Nissan Motor Corporation\Desktop\Starter_Code (2)\Starter_Code\PyBank\Resources\budget_data.csv"  # Input file path
+file_to_load = os.path.join("Resources","budget_data.csv")  # Input file path
 file_to_output = os.path.join("analysis", "budget_analysis.txt")  # Output file path
 
 
 
 # Open and read the csv
-with open(file_to_load,'r') as financial_data:
+with open(file_to_load) as financial_data:
     reader = csv.reader(financial_data)
 
     # Skip the header row
@@ -22,13 +22,13 @@ with open(file_to_load,'r') as financial_data:
 
 # The total number of months included in the dataset
 total_months = len([row[0] for row in csv_data])
-print(total_months)
+# print(total_months)
 
 # The net total amount of "Profit/Losses" over the entire period
 total = 0
 for row in csv_data:
     total += int(row[1])
-print(total)
+# print(total)
 
 # The changes in "Profit/Losses" over the entire period, and then the average of those changes
 num_list = []
@@ -63,7 +63,6 @@ max_change = max(num_list_diff)
 max_change_index = num_list_diff.index(max_change)
 max_change_month = months[max_change_index]
 
-
 # print(max_change_month)       
 # print(max_change)
 
@@ -85,15 +84,19 @@ min_change_month = months[min_change_index]
 # print(min_change)
 
 
-print('Financial Analysis')
-print('----------------------------')
-print(f'Total Months: {total_months}')
-print(f'Total: ${total}')
-print(f'Average Change: ${average_change}')
-print(f'Greatest Increase in Profits: {max_change_month} ${max_change}')
-print(f'Greatest Decrease in Profits: {min_change_month} ${min_change}')
-
+output = (
+f"Financial Analysis\n"
+f"----------------------------\n"
+f"Total Months: {total_months}\n"
+f"Total: ${total}\n"
+f"Average Change: ${average_change}\n"
+f"Greatest Increase in Profits: {max_change_month} ${max_change}\n"
+f"Greatest Decrease in Profits: {min_change_month} ${min_change}\n"
+)
 
 # Write the results to a text file
 with open(file_to_output, "w") as txt_file:
     txt_file.write(output)
+
+
+
