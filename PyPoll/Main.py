@@ -97,7 +97,7 @@ f'Raymon Anthony Doane: {Raymon_Anthony_Doane}% ({Raymon_Anthony_Doane_count})\n
 f'-------------------------\n'
 f'Winner: {winner}\n'
 )
-
+print(output)
 # Write the results to a text file
 with open(file_to_output, "w") as txt_file:
     txt_file.write(output)

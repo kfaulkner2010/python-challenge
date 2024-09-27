@@ -93,7 +93,7 @@ f"Average Change: ${average_change}\n"
 f"Greatest Increase in Profits: {max_change_month} ${max_change}\n"
 f"Greatest Decrease in Profits: {min_change_month} ${min_change}\n"
 )
-
+print(output)
 # Write the results to a text file
 with open(file_to_output, "w") as txt_file:
     txt_file.write(output)
